@@ -1,0 +1,14 @@
+{
+  "test_add_positive": {
+    "name": "양수 덧셈 처리",
+    "points": 40
+  },
+  "test_add_negative": {
+    "name": "음수 덧셈 처리",
+    "points": 30
+  },
+  "test_add_zero": {
+    "name": "0 포함 덧셈 처리",
+    "points": 30
+  }
+}
