@@ -1,0 +1,14 @@
+{
+  "test_factorial_basic": {
+    "name": "기본 팩토리얼 계산",
+    "points": 40
+  },
+  "test_factorial_zero": {
+    "name": "0 입력 처리",
+    "points": 30
+  },
+  "test_factorial_one": {
+    "name": "1 입력 처리",
+    "points": 30
+  }
+}
