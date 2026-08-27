@@ -30,6 +30,7 @@ except (FileNotFoundError, json.JSONDecodeError):
 
 
 score = 0
+summary_rows = []
 max_score = sum(
     item["points"]
     for item in config.values()
@@ -62,10 +63,18 @@ for test in report.get("tests", []):
             f"[PASS] {display_name}: "
             f"+{points}점"
         )
+
+        summary_rows.append(
+            f"| ✅ | {display_name} | {points}/{points} |"
+        )
     else:
         print(
             f"[FAIL] {display_name}: "
             f"+0점 / {points}점"
+        )
+
+        summary_rows.append(
+            f"| ❌ | {display_name} | 0/{points} |"
         )
 
 
@@ -74,6 +83,19 @@ print("------------------------------------------")
 print(f"Total Score: {score}/{max_score}")
 print("==========================================")
 
+github_summary = os.environ.get("GITHUB_STEP_SUMMARY")
+
+if github_summary:
+    with open(github_summary, "a", encoding="utf-8") as f:
+        f.write(f"## 🧪 {assignment} 채점 결과\n\n")
+        f.write("| 결과 | 테스트 | 점수 |\n")
+        f.write("| --- | --- | ---: |\n")
+
+        for row in summary_rows:
+            f.write(row + "\n")
+
+        f.write("\n")
+        f.write(f"### 총점: **{score}/{max_score}**\n")
 
 result = {
     "assignment": assignment,
