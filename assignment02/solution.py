@@ -6,4 +6,6 @@ def factorial(n):
     factorial(0) -> 1
     factorial(5) -> 120
     """
-    pass
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n-1)
